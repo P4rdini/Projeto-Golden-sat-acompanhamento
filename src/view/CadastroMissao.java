@@ -5,10 +5,17 @@
  */
 package view;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 import model.Agente;
 import model.Cliente;
+import model.Missao;
 import model.Rota;
 import util.Mascara;
 
@@ -21,6 +28,7 @@ public class CadastroMissao extends javax.swing.JFrame {
     List<Cliente> cliente = new ArrayList<Cliente>();
     List<Agente> agente = new ArrayList<Agente>();
     List<Rota> rota = new ArrayList<Rota>();
+    int id;
     public CadastroMissao() {
         initComponents();
         cliente = Cliente.pegarNomes(cbCliente);
@@ -31,6 +39,22 @@ public class CadastroMissao extends javax.swing.JFrame {
         tfHoraFim.setFormatterFactory(Mascara.getHora());
     }
 
+    public void limpar(){
+        cbCliente.setSelectedIndex(0);
+        cbRota.setSelectedIndex(0);
+        cbAgente.setSelectedIndex(0);
+        tfNomeMot.setText("");
+        tfPlacaMot.setText("");
+        tfHoraSolicitada.setText("");
+        tfHoraInicio.setText("");
+        tfHoraFim.setText("");
+        tfKMfinal.setText("");
+        tfKMinicial.setText("");
+        taDescricao.setText("");
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,8 +136,18 @@ public class CadastroMissao extends javax.swing.JFrame {
         jScrollPane1.setViewportView(taDescricao);
 
         btCadastro.setText("Cadastrar");
+        btCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastroActionPerformed(evt);
+            }
+        });
 
         btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -243,12 +277,58 @@ public class CadastroMissao extends javax.swing.JFrame {
             String str2 = evt.getItem().toString();
             
             if(str.toLowerCase().equals(str2.toLowerCase())){
-                int id = cliente.get(i).getId();
+                 id = cliente.get(i).getId();
                 rota = Rota.pegarRotas(id,cbRota);
             }
             
             }
     }//GEN-LAST:event_cbClienteItemStateChanged
+
+    private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
+        if(cbCliente.getSelectedIndex() == 0 
+                || cbAgente.getSelectedIndex() ==0 
+                ||tfNomeMot.getText().isEmpty()
+                ||tfHoraSolicitada.getText().isEmpty()
+                ||tfHoraInicio.getText().isEmpty()
+                ||tfHoraFim.getText().isEmpty()
+                ||tfKMfinal.getText().isEmpty()
+                ||tfKMinicial.getText().isEmpty()){
+            System.out.println("vazio");
+          //  Missao m = new Missao();
+            
+        }else{
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat f = new SimpleDateFormat("HH:mm");
+            double idAgente=0;
+       
+            String horaSolicitaUniao = String.valueOf(tfHoraSolicitada.getText().charAt(0))+String.valueOf(tfHoraSolicitada.getText().charAt(1));
+            String minutoSlicitaUniao = String.valueOf(tfHoraSolicitada.getText().charAt(3))+String.valueOf(tfHoraSolicitada.getText().charAt(4));
+            System.out.println("Hora solicitada : "+horaSolicitaUniao+minutoSlicitaUniao);
+            String horaInicialUniao = String.valueOf(tfHoraInicio.getText().charAt(0))+String.valueOf(tfHoraInicio.getText().charAt(1));
+            String minutoInicialUniao = String.valueOf(tfHoraInicio.getText().charAt(3))+String.valueOf(tfHoraInicio.getText().charAt(4));
+            
+            String horaFimUniao = String.valueOf(tfHoraFim.getText().charAt(0))+String.valueOf(tfHoraFim.getText().charAt(1));
+            String minutoFimUniao = String.valueOf(tfHoraFim.getText().charAt(3))+String.valueOf(tfHoraFim.getText().charAt(4));
+            
+            LocalTime horaSolicitada = LocalTime.of(Integer.valueOf(horaSolicitaUniao),Integer.valueOf(minutoSlicitaUniao));
+            LocalTime horaInicial = LocalTime.of(Integer.valueOf(horaInicialUniao),Integer.valueOf(minutoInicialUniao));
+            LocalTime horaFim = LocalTime.of(Integer.valueOf(horaFimUniao),Integer.valueOf(minutoFimUniao));
+            
+            
+            for(int i=0;i<agente.size();i++){
+                if (agente.get(i).getNome().equals(cbAgente.getSelectedItem().toString())){
+                    idAgente = agente.get(i).getCpf();
+                }
+            }
+            
+            Missao m = new Missao(c.getTime(), id, idAgente, cbRota.getSelectedItem().toString(), tfNomeMot.getText(), tfPlacaMot.getText(), Time.valueOf(horaSolicitada), Time.valueOf(horaInicial), Time.valueOf(horaFim), (Integer.valueOf(tfKMfinal.getText())- Integer.valueOf(tfKMinicial.getText())), taDescricao.getText());
+            System.out.println(m.toString());
+        }
+    }//GEN-LAST:event_btCadastroActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+           limpar();
+    }//GEN-LAST:event_btLimparActionPerformed
 
     /**
      * @param args the command line arguments

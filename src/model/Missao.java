@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -14,26 +15,39 @@ import java.util.Date;
 public class Missao {
     private int id;
     private Date data;
-    private Cliente cliente;
-    private Agente agente;
-    private Rota rota;
+    private int cliente;
+    private double agente;
+    private String rota;
     private String nomeMot;
     private String placaMot;
-    private Date horaSolicitada;
-    private Date horaInicial;
-    private Date horaFinal;
+    private Time horaSolicitada;
+    private Time horaInicial;
+    private Time horaFinal;
     private float totalKM;
     private float adMissao;
     private String descricao;
 
-    public Missao() {
+    public Missao(Date data, int cliente, double agente, String rota, String nomeMot, String placaMot, Time horaSolicitada, Time horaInicial, Time horaFinal, float totalKM, String descricao) {
+        
+        this.data = data;
+        this.cliente = cliente;
+        this.agente = agente;
+        this.rota = rota;
+        this.nomeMot = nomeMot;
+        this.placaMot = placaMot;
+        this.horaSolicitada = horaSolicitada;
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
+        this.totalKM = totalKM;
+        this.descricao = descricao;
     }
 
-    public Cliente getCliente() {
+    
+    public int getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(int cliente) {
         this.cliente = cliente;
     }
 
@@ -69,19 +83,19 @@ public class Missao {
         this.data = data;
     }
 
-    public Agente getAgente() {
+    public double getAgente() {
         return agente;
     }
 
-    public void setAgente(Agente agente) {
+    public void setAgente(double agente) {
         this.agente = agente;
     }
 
-    public Rota getRota() {
+    public String getRota() {
         return rota;
     }
 
-    public void setRota(Rota rota) {
+    public void setRota(String rota) {
         this.rota = rota;
     }
 
@@ -101,27 +115,27 @@ public class Missao {
         this.placaMot = placaMot;
     }
 
-    public Date getHoraSolicitada() {
+    public Time getHoraSolicitada() {
         return horaSolicitada;
     }
 
-    public void setHoraSolicitada(Date horaSolicitada) {
+    public void setHoraSolicitada(Time horaSolicitada) {
         this.horaSolicitada = horaSolicitada;
     }
 
-    public Date getHoraInicial() {
+    public Time getHoraInicial() {
         return horaInicial;
     }
 
-    public void setHoraInicial(Date horaInicial) {
+    public void setHoraInicial(Time horaInicial) {
         this.horaInicial = horaInicial;
     }
 
-    public Date getHoraFinal() {
+    public Time getHoraFinal() {
         return horaFinal;
     }
 
-    public void setHoraFinal(Date horaFinal) {
+    public void setHoraFinal(Time horaFinal) {
         this.horaFinal = horaFinal;
     }
 

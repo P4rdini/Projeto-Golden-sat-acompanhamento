@@ -5,8 +5,8 @@
  */
 package model;
 
+import DAO.MissaoDAO;
 import java.sql.Time;
-import java.util.Date;
 
 /**
  *
@@ -14,10 +14,10 @@ import java.util.Date;
  */
 public class Missao {
     private int id;
-    private Date data;
+    private String data;
     private int cliente;
     private double agente;
-    private String rota;
+    private int rota;
     private String nomeMot;
     private String placaMot;
     private Time horaSolicitada;
@@ -27,7 +27,7 @@ public class Missao {
     private float adMissao;
     private String descricao;
 
-    public Missao(Date data, int cliente, double agente, String rota, String nomeMot, String placaMot, Time horaSolicitada, Time horaInicial, Time horaFinal, float totalKM, String descricao) {
+    public Missao(String data, int cliente, double agente, int rota, String nomeMot, String placaMot, Time horaSolicitada, Time horaInicial, Time horaFinal, float totalKM, String descricao) {
         
         this.data = data;
         this.cliente = cliente;
@@ -75,11 +75,11 @@ public class Missao {
         this.id = id;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -91,11 +91,11 @@ public class Missao {
         this.agente = agente;
     }
 
-    public String getRota() {
+    public int getRota() {
         return rota;
     }
 
-    public void setRota(String rota) {
+    public void setRota(int rota) {
         this.rota = rota;
     }
 
@@ -153,7 +153,14 @@ public class Missao {
     }
 
   
-    
+    public boolean cadastrar(){
+        MissaoDAO dao = new MissaoDAO();
+        if(dao.create(this) != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     

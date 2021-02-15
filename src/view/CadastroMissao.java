@@ -300,7 +300,7 @@ public class CadastroMissao extends javax.swing.JFrame {
             Calendar c = Calendar.getInstance();
             SimpleDateFormat f = new SimpleDateFormat("HH:mm");
             double idAgente=0;
-       
+            int idRota=0;
             String horaSolicitaUniao = String.valueOf(tfHoraSolicitada.getText().charAt(0))+String.valueOf(tfHoraSolicitada.getText().charAt(1));
             String minutoSlicitaUniao = String.valueOf(tfHoraSolicitada.getText().charAt(3))+String.valueOf(tfHoraSolicitada.getText().charAt(4));
             System.out.println("Hora solicitada : "+horaSolicitaUniao+minutoSlicitaUniao);
@@ -319,10 +319,16 @@ public class CadastroMissao extends javax.swing.JFrame {
                 if (agente.get(i).getNome().equals(cbAgente.getSelectedItem().toString())){
                     idAgente = agente.get(i).getCpf();
                 }
+                if(cbRota.getSelectedIndex() != 0){
+                    if(cbRota.getSelectedItem().toString().equals(rota.get(i).getRota())){
+                        idRota = rota.get(i).getId();
+                    }
+                }
             }
             
-            Missao m = new Missao(c.getTime(), id, idAgente, cbRota.getSelectedItem().toString(), tfNomeMot.getText(), tfPlacaMot.getText(), Time.valueOf(horaSolicitada), Time.valueOf(horaInicial), Time.valueOf(horaFim), (Integer.valueOf(tfKMfinal.getText())- Integer.valueOf(tfKMinicial.getText())), taDescricao.getText());
+            Missao m = new Missao(f.format(c.getTime()), id, idAgente, idRota, tfNomeMot.getText(), tfPlacaMot.getText(), Time.valueOf(horaSolicitada), Time.valueOf(horaInicial), Time.valueOf(horaFim), (Integer.valueOf(tfKMfinal.getText())- Integer.valueOf(tfKMinicial.getText())), taDescricao.getText());
             System.out.println(m.toString());
+            m.cadastrar();
         }
     }//GEN-LAST:event_btCadastroActionPerformed
 

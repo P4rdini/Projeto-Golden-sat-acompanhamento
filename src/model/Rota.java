@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
  * @author rafa_
  */
 public class Rota {
+    private int id;
     private String rota;
     private float diaria;
     private int franquiaKM;
@@ -27,7 +28,8 @@ public class Rota {
     private int idCliente;
     SimpleDateFormat padraoHora = new SimpleDateFormat("HH:MM:SS");
 
-    public Rota(String rota, float diaria, int franquiaKM, LocalTime franquiaHora, float adHora, float adKM, int idCliente) {
+    public Rota(int id,String rota, float diaria, int franquiaKM, LocalTime franquiaHora, float adHora, float adKM, int idCliente) {
+        this.id =id;
         this.rota = rota;
         this.diaria = diaria;
         this.franquiaKM = franquiaKM;
@@ -37,7 +39,9 @@ public class Rota {
         this.idCliente = idCliente;
     }
 
-    public Rota(String rota, float diaria, int franquiaKM, LocalTime franquiaHora, float adHora, float adKM) {
+    
+    
+    public Rota(String rota, float diaria, int franquiaKM, LocalTime franquiaHora, float adHora, float adKM,int idCliente) {
         this.rota = rota;
         this.diaria = diaria;
         this.franquiaKM = franquiaKM;
@@ -45,10 +49,14 @@ public class Rota {
         this.adHora = adHora;
         this.adKM = adKM;
     }
-        
-    
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getIdCliente() {
         return idCliente;
     }

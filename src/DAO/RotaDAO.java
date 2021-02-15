@@ -90,7 +90,7 @@ public class RotaDAO implements persistencia<Rota> {
            rs = pst.executeQuery();
           while(rs.next()){
             
-           Rota c = new Rota(rs.getString("rota"), rs.getFloat("diaria"),rs.getInt("franquiaKM"),rs.getTime("franquiaHora").toLocalTime(),rs.getFloat("adHora"),rs.getFloat("adKM"), rs.getInt("cliente_id"));
+           Rota c = new Rota(rs.getInt("idRota"),rs.getString("rota"), rs.getFloat("diaria"),rs.getInt("franquiaKM"),rs.getTime("franquiaHora").toLocalTime(),rs.getFloat("adHora"),rs.getFloat("adKM"), rs.getInt("cliente_id"));
            l.add(c);
         }
         } catch (SQLException e) {

@@ -65,7 +65,6 @@ public class CadastroMissao extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbCliente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -91,91 +90,143 @@ public class CadastroMissao extends javax.swing.JFrame {
         tfHoraSolicitada = new javax.swing.JFormattedTextField();
         tfHoraInicio = new javax.swing.JFormattedTextField();
         tfHoraFim = new javax.swing.JFormattedTextField();
+        tfTitulo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Cadastro Missao");
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 0)));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Cliente:");
 
+        cbCliente.setBackground(new java.awt.Color(243, 243, 243));
+        cbCliente.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        cbCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
         cbCliente.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbClienteItemStateChanged(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Rota:");
 
+        cbRota.setBackground(new java.awt.Color(243, 243, 243));
+        cbRota.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         cbRota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        cbRota.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("Agente:");
 
+        cbAgente.setBackground(new java.awt.Color(243, 243, 243));
+        cbAgente.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         cbAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        cbAgente.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+        cbAgente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAgenteItemStateChanged(evt);
+            }
+        });
 
+        lbPlaca.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbPlaca.setText("Placa:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setText("Nome Motorista:");
 
+        tfNomeMot.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfNomeMot.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+        tfNomeMot.setCaretColor(new java.awt.Color(243, 243, 243));
+        tfNomeMot.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tfNomeMot.setSelectedTextColor(new java.awt.Color(243, 243, 243));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setText("Placa Motorista:");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel8.setText("Hora Solicitada:");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setText("Hora Inicio:");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setText("Hora termino:");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel11.setText("KM Inicial:");
 
+        tfKMinicial.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel12.setText("KM Final:");
 
+        tfKMfinal.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
         taDescricao.setColumns(20);
+        taDescricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         taDescricao.setRows(5);
         taDescricao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jScrollPane1.setViewportView(taDescricao);
 
+        btCadastro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btCadastro.setText("Cadastrar");
+        btCadastro.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
         btCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadastroActionPerformed(evt);
             }
         });
 
+        btLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btLimpar.setText("Limpar");
+        btLimpar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);
             }
         });
 
+        tfPlacaMot.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        tfHoraSolicitada.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        tfHoraInicio.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        tfHoraFim.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        tfTitulo.setBackground(new java.awt.Color(243, 243, 243));
+        tfTitulo.setFont(new java.awt.Font("Candara Light", 1, 36)); // NOI18N
+        tfTitulo.setForeground(new java.awt.Color(216, 219, 70));
+        tfTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tfTitulo.setText("Cadastro Missao");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCadastro))
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbCliente, 0, 212, Short.MAX_VALUE)
-                                    .addComponent(cbAgente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbAgente, 0, 212, Short.MAX_VALUE)
                                     .addComponent(tfNomeMot))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbPlaca, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,23 +243,34 @@ public class CadastroMissao extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfKMfinal, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                                     .addComponent(tfHoraInicio))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbRota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfPlacaMot, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(tfHoraFim))))
-                .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(185, 185, 185))
+                            .addComponent(tfHoraFim))
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31))))
+            .addComponent(tfTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGap(20, 20, 20)
+                .addComponent(tfTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -240,33 +302,32 @@ public class CadastroMissao extends javax.swing.JFrame {
                     .addComponent(tfKMinicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(tfKMfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastro)
                     .addComponent(btLimpar))
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClienteItemStateChanged
@@ -298,7 +359,7 @@ public class CadastroMissao extends javax.swing.JFrame {
             
         }else{
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat f = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/YY HH:mm");
             double idAgente=0;
             int idRota=0;
             String horaSolicitaUniao = String.valueOf(tfHoraSolicitada.getText().charAt(0))+String.valueOf(tfHoraSolicitada.getText().charAt(1));
@@ -329,12 +390,22 @@ public class CadastroMissao extends javax.swing.JFrame {
             Missao m = new Missao(f.format(c.getTime()), id, idAgente, idRota, tfNomeMot.getText(), tfPlacaMot.getText(), Time.valueOf(horaSolicitada), Time.valueOf(horaInicial), Time.valueOf(horaFim), (Integer.valueOf(tfKMfinal.getText())- Integer.valueOf(tfKMinicial.getText())), taDescricao.getText());
             System.out.println(m.toString());
             m.cadastrar();
+     
         }
     }//GEN-LAST:event_btCadastroActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
            limpar();
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void cbAgenteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAgenteItemStateChanged
+        for(int i=0;i<agente.size();i++){
+            
+        if(cbAgente.getSelectedItem().toString().equals(agente.get(i).getNome())){
+            lbPlaca.setText("Placa: "+agente.get(i).getPlaca());
+        }
+        }
+    }//GEN-LAST:event_cbAgenteItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -377,7 +448,6 @@ public class CadastroMissao extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbAgente;
     private javax.swing.JComboBox<String> cbCliente;
     private javax.swing.JComboBox<String> cbRota;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -390,6 +460,8 @@ public class CadastroMissao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbPlaca;
     private javax.swing.JTextArea taDescricao;
     private javax.swing.JFormattedTextField tfHoraFim;
@@ -399,5 +471,6 @@ public class CadastroMissao extends javax.swing.JFrame {
     private javax.swing.JTextField tfKMinicial;
     private javax.swing.JTextField tfNomeMot;
     private javax.swing.JFormattedTextField tfPlacaMot;
+    private javax.swing.JLabel tfTitulo;
     // End of variables declaration//GEN-END:variables
 }

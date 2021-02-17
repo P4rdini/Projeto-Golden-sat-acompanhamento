@@ -31,6 +31,9 @@ public class Agente {
         this.endereco = endereco;
     }
 
+    public Agente() {
+    }
+
     
     
     

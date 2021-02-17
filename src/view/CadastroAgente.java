@@ -46,19 +46,35 @@ public class CadastroAgente extends javax.swing.JFrame {
         tfCPF = new javax.swing.JFormattedTextField();
         tfPlaca = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnAgente.setBackground(new java.awt.Color(245, 245, 245));
+
+        tfNome.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        lbNome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbNome.setText("Nome:");
 
+        lbCPF.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbCPF.setText("CPF:");
 
+        lbPlaca.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbPlaca.setText("Placa:");
 
+        lbEndereco.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbEndereco.setText("Endereço:");
 
+        tfEndereco.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        lbRegistro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbRegistro.setText("Registado:");
 
+        cbRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +82,13 @@ public class CadastroAgente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tfCPF.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        tfPlaca.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Candara Light", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(216, 219, 70));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro Agente");
 
         javax.swing.GroupLayout pnAgenteLayout = new javax.swing.GroupLayout(pnAgente);
@@ -74,36 +96,37 @@ public class CadastroAgente extends javax.swing.JFrame {
         pnAgenteLayout.setHorizontalGroup(
             pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnAgenteLayout.createSequentialGroup()
-                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnAgenteLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbRegistro)
-                            .addComponent(lbEndereco)
-                            .addComponent(lbPlaca)
-                            .addComponent(lbNome)
-                            .addComponent(lbCPF))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbRegistro)
-                            .addComponent(tfNome)
-                            .addComponent(tfEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(tfCPF)
-                            .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnAgenteLayout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnAgenteLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel1)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbRegistro)
+                    .addComponent(lbEndereco)
+                    .addComponent(lbPlaca)
+                    .addComponent(lbNome)
+                    .addComponent(lbCPF))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbRegistro)
+                    .addComponent(tfNome)
+                    .addComponent(tfEndereco)
+                    .addComponent(tfCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAgenteLayout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137))
         );
         pnAgenteLayout.setVerticalGroup(
             pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAgenteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,7 +146,9 @@ public class CadastroAgente extends javax.swing.JFrame {
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbRegistro)
                     .addComponent(cbRegistro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(16, 16, 16))
         );
@@ -132,10 +157,7 @@ public class CadastroAgente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(pnAgente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,6 +165,7 @@ public class CadastroAgente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -196,6 +219,8 @@ public class CadastroAgente extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbRegistro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbEndereco;
     private javax.swing.JLabel lbNome;

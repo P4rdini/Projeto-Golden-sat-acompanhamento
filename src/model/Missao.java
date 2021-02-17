@@ -42,6 +42,9 @@ public class Missao {
         this.descricao = descricao;
     }
 
+    public Missao() {
+    }
+
     
     public int getCliente() {
         return cliente;

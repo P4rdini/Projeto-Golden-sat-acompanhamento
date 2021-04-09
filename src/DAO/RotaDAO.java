@@ -33,7 +33,7 @@ public class RotaDAO implements persistencia<Rota> {
         PreparedStatement pst = null;
     //    PreparedStatement pst2 = null;
         ResultSet rs = null;
-        String sql = "insert into rota (rota,franquiaKM,franquiaHora,adHora,adKM,diaria,cliente_id)value(?,?,?,?,?,?,?)";
+        String sql = "insert into rota (cliente_id,rota,franquiaKM,franquiaHora,adHora,adKM,diaria)value(?,?,?,?,?,?,?)";
        // String sql2 = "update cliente set rota = ? where idCliente = 5";
         try {
              pst = con.getConexao().prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -43,13 +43,13 @@ public class RotaDAO implements persistencia<Rota> {
 //           pst2.setObject(1, r);
 //            pst2.executeQuery();
             
-            pst.setString(1, obj.getRota());
-            pst.setInt(2, obj.getFranquiaKM());
-            pst.setTime(3,Time.valueOf(obj.getFranquiaHora()));
-            pst.setFloat(4, obj.getAdHora());
-            pst.setFloat(5, obj.getAdKM());
-            pst.setFloat(6, obj.getDiaria());
-            pst.setInt(7, obj.getIdCliente());
+            pst.setInt(1, obj.getIdCliente());
+            pst.setString(2, obj.getRota());
+            pst.setInt(3, obj.getFranquiaKM());
+            pst.setTime(4,Time.valueOf(obj.getFranquiaHora()));
+            pst.setFloat(5, obj.getAdHora());
+            pst.setFloat(6, obj.getAdKM());
+            pst.setFloat(7, obj.getDiaria());
             
             pst.execute();
             rs = pst.getGeneratedKeys();
@@ -115,9 +115,9 @@ public class RotaDAO implements persistencia<Rota> {
         List<Rota> l = new ArrayList<Rota>();
         l = read();
         boolean retorno =false;
-        String str = cliente+rota;
+        String str = cliente+rota.toUpperCase();
         for(int i=0;i<l.size();i++){
-            String str2 =l.get(i).getIdCliente()+l.get(i).getRota();
+            String str2 =l.get(i).getIdCliente()+l.get(i).getRota().toUpperCase();
             if(str.equals(str2)){
                 retorno = true;
             }

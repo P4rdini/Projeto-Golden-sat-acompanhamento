@@ -13,13 +13,15 @@ import java.time.LocalTime;
  */
 public class testeTime {
     public static void main(String[] args) {
-        String hora = "15:30";
+        String hora = "15:30";;
         
         String horaSolicitaUniao = String.valueOf(hora.charAt(0))+String.valueOf(hora.charAt(1));
             String minutoSlicitaUniao = String.valueOf(hora.charAt(3))+String.valueOf(hora.charAt(4));
             
            LocalTime horaSolicitada = LocalTime.of(Integer.valueOf(horaSolicitaUniao),Integer.valueOf(minutoSlicitaUniao));
            
+           
             System.out.println(horaSolicitada);
+
     }
 }

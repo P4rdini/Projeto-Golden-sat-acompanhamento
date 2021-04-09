@@ -5,6 +5,7 @@
  */
 package model;
 
+import DAO.AgenteDAO;
 import DAO.ClienteDAO;
 import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.ArrayList;
@@ -30,6 +31,9 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.estado = estado;
+    }
+
+    public Cliente() {
     }
 
     public int getId() {
@@ -99,6 +103,55 @@ public class Cliente {
         }
         
         return l;
+    }
+    public static String converterCliente(int id){
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> l = new ArrayList<Cliente>();
+        l = dao.read();
+        String str = null;
+        
+        for(int i=0;i<l.size();i++){
+            if(l.get(i).getId() == id){
+                str = l.get(i).getNome()+" - "+l.get(i).getEstado();
+            }
+        }
+        return str;
+    }
+    
+    public static List<Cliente> search(String coluna,String pesquisa){
+        List<Cliente> m = new ArrayList<Cliente>();
+        List<Cliente> resp = new ArrayList<Cliente>();
+        ClienteDAO dao = new ClienteDAO();
+        m = dao.read();
+        if(coluna.equals("Nome"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(m.get(i).getNome().toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if(coluna.equals("Telefone"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(String.valueOf(m.get(i).getTelefone()).toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if (coluna.equals("Estado"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(m.get(i).getEstado().toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }
+          return resp;  
     }
     
 }

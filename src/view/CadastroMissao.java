@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.SimpleFormatter;
+import javax.swing.JOptionPane;
 import model.Agente;
 import model.Cliente;
 import model.Missao;
@@ -380,16 +381,23 @@ public class CadastroMissao extends javax.swing.JFrame {
                 if (agente.get(i).getNome().equals(cbAgente.getSelectedItem().toString())){
                     idAgente = agente.get(i).getCpf();
                 }
-                if(cbRota.getSelectedIndex() != 0){
-                    if(cbRota.getSelectedItem().toString().equals(rota.get(i).getRota())){
-                        idRota = rota.get(i).getId();
-                    }
                 }
+            for(int i=0;i<rota.size();i++){
+                if(cbRota.getSelectedIndex() != 0){
+                    if(cbRota.getSelectedItem().toString().toUpperCase().equals(rota.get(i).getRota().toUpperCase())){
+                        idRota = rota.get(i).getId();
+                        System.out.println("Rodouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu   "+idRota);
+                    }
+            }
             }
             
             Missao m = new Missao(f.format(c.getTime()), id, idAgente, idRota, tfNomeMot.getText(), tfPlacaMot.getText(), Time.valueOf(horaSolicitada), Time.valueOf(horaInicial), Time.valueOf(horaFim), (Integer.valueOf(tfKMfinal.getText())- Integer.valueOf(tfKMinicial.getText())), taDescricao.getText());
             System.out.println(m.toString());
-            m.cadastrar();
+            if(m.cadastrar()){
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            }else{
+                JOptionPane.showConfirmDialog(null, "Erro ,feche e abra o programa e tente novamente ");
+            }
      
         }
     }//GEN-LAST:event_btCadastroActionPerformed

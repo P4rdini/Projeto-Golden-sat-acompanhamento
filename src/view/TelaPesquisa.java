@@ -8,9 +8,16 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Agente;
+import model.Cliente;
 import model.Missao;
+import model.Rota;
 
 /**
  *
@@ -25,30 +32,362 @@ public class TelaPesquisa extends javax.swing.JFrame {
         initComponents();
     }
 
-    
-    public void TabelaAgente(){
-        DefaultTableModel model= new DefaultTableModel();
+    public void TabelaClienteLista(List<Cliente> l) {
+        if (!l.isEmpty()) {
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("Nome");
+            model.addColumn("Estado");
+            model.addColumn("Telefone");
+            model.addColumn("Endereço");
+
+            for (int i = 0; i < l.size(); i++) {
+                String[] reg = {l.get(i).getNome(), l.get(i).getEstado(), String.valueOf(l.get(i).getTelefone()), l.get(i).getEndereco()};
+                model.addRow(reg);
+
+            }
+
+            Tabela.setModel(model);
+            Tabela.setAutoCreateRowSorter(true);
+            Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+            Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+            Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+            
+((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+            DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+            centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+            Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado !");
+        }
+    }
+
+    public void TabelaCliente() {
+        DefaultTableModel model = new DefaultTableModel();
+        Cliente a = new Cliente();
+        List<Cliente> l = new ArrayList<Cliente>();
+        l = a.pegarNomes(new JComboBox());
+
+        model.addColumn("Nome");
+        model.addColumn("Estado");
+        model.addColumn("Telefone");
+
+        model.addColumn("Endereço");
+
+        for (int i = 0; i < l.size(); i++) {
+            String[] reg = {l.get(i).getNome(), l.get(i).getEstado(), String.valueOf(l.get(i).getTelefone()), l.get(i).getEndereco()};
+            model.addRow(reg);
+
+        }
+
+        Tabela.setModel(model);
+        Tabela.setAutoCreateRowSorter(true);
+        Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+        Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+        Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+        
+        ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+    }
+
+    public void TabelaRotaLista(List<Rota> lista) {
+        if (!lista.isEmpty()) {
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Cliente");
+            model.addColumn("Rota");
+            model.addColumn("Franquia KM");
+            model.addColumn("Franquia Hora");
+            model.addColumn("Diaria");
+            model.addColumn("Adicional por KM");
+            model.addColumn("Adicional por Hora");
+
+            for (int i = 0; i < lista.size(); i++) {
+                String[] reg = {Cliente.converterCliente(lista.get(i).getIdCliente()), lista.get(i).getRota(), String.valueOf(lista.get(i).getFranquiaKM()),
+                    String.valueOf(lista.get(i).getFranquiaHora()), String.valueOf(lista.get(i).getDiaria()), String.valueOf(lista.get(i).getAdKM()),
+                    String.valueOf(lista.get(i).getAdHora())};
+                model.addRow(reg);
+
+            }
+            Tabela.setModel(model);
+            Tabela.setAutoCreateRowSorter(true);
+            Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+            Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+            Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+
+            ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+            DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+            centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+            Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado !");
+        }
+    }
+
+    public void TabelaRota() {
+        DefaultTableModel model = new DefaultTableModel();
+
+        Rota a = new Rota();
+        List<Rota> l = new ArrayList<Rota>();
+        l = a.pegarTodasRotas();
+        model.addColumn("Cliente");
+        model.addColumn("Rota");
+        model.addColumn("Franquia KM");
+        model.addColumn("Franquia Hora");
+        model.addColumn("Diaria");
+        model.addColumn("Adicional por KM");
+        model.addColumn("Adicional por Hora");
+
+        for (int i = 0; i < l.size(); i++) {
+            String[] reg = {Cliente.converterCliente(l.get(i).getIdCliente()), l.get(i).getRota(), String.valueOf(l.get(i).getFranquiaKM()),
+                String.valueOf(l.get(i).getFranquiaHora()), String.valueOf(l.get(i).getDiaria()), String.valueOf(l.get(i).getAdKM()),
+                String.valueOf(l.get(i).getAdHora())};
+            model.addRow(reg);
+            System.out.println("aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        }
+
+        Tabela.setModel(model);
+        Tabela.setAutoCreateRowSorter(true);
+        Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+        Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+        Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+
+        ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+    }
+
+    public void TabelaMissaoLista(List<Missao> lista) {
+        if (!lista.isEmpty()) {
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Data");
+            model.addColumn("Cliente");
+            model.addColumn("Rota");
+            model.addColumn("Hora Solicitada");
+            model.addColumn("Hora de Inicio");
+            model.addColumn("Hora de termino");
+            model.addColumn("Agente");
+            model.addColumn("Total KM");
+            model.addColumn("Nome Motorista");
+            model.addColumn("Placa Motorista");
+            model.addColumn("Observação");
+
+            for (int i = 0; i < lista.size(); i++) {
+                String[] reg = {lista.get(i).getData(), Cliente.converterCliente(lista.get(i).getCliente()), Rota.converterRota(lista.get(i).getRota()),
+                    String.valueOf(lista.get(i).getHoraSolicitada()), String.valueOf(lista.get(i).getHoraInicial()), String.valueOf(lista.get(i).getHoraFinal()),
+                    Agente.converterAgente(lista.get(i).getAgente()), String.valueOf(lista.get(i).getTotalKM()), lista.get(i).getNomeMot(), lista.get(i).getPlacaMot(), lista.get(i).getDescricao()};
+                model.addRow(reg);
+
+            }
+            Tabela.setModel(model);
+            Tabela.setAutoCreateRowSorter(true);
+            Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+            Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+            Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(7).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(8).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(9).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(10).setPreferredWidth(100);
+
+            ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+            DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+            centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+            Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(8).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(9).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(10).setCellRenderer(centralizado);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado !");
+        }
+    }
+
+    public void TabelaMissao() {
+        DefaultTableModel model = new DefaultTableModel();
+        Missao a = new Missao();
+        List<Missao> l = new ArrayList<Missao>();
+        l = a.getMissao(new JComboBox());
+        System.out.println("Rodou a condicao sem lista ");
+        model.addColumn("Data");
+        model.addColumn("Cliente");
+        model.addColumn("Rota");
+        model.addColumn("Hora Solicitada");
+        model.addColumn("Hora de Inicio");
+        model.addColumn("Hora de termino");
+        model.addColumn("Agente");
+        model.addColumn("Total KM");
+        model.addColumn("Nome Motorista");
+        model.addColumn("Placa Motorista");
+        model.addColumn("Observação");
+        for (int i = 0; i < l.size(); i++) {
+            String[] reg = {l.get(i).getData(), Cliente.converterCliente(l.get(i).getCliente()), Rota.converterRota(l.get(i).getRota()),
+                String.valueOf(l.get(i).getHoraSolicitada()), String.valueOf(l.get(i).getHoraInicial()), String.valueOf(l.get(i).getHoraFinal()),
+                Agente.converterAgente(l.get(i).getAgente()), String.valueOf(l.get(i).getTotalKM()), l.get(i).getNomeMot(), l.get(i).getPlacaMot(), l.get(i).getDescricao()};
+            model.addRow(reg);
+
+        }
+        Tabela.setModel(model);
+        Tabela.setAutoCreateRowSorter(true);
+        Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+        Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+        Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(7).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(8).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(9).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(10).setPreferredWidth(100);
+
+        ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(8).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(9).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(10).setCellRenderer(centralizado);
+    }
+
+    public void TabelaAgenteLista(List<Agente> lista) {
+        if (!lista.isEmpty()) {
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("Registrado");
+            model.addColumn("Nome");
+            model.addColumn("CPF");
+            model.addColumn("Placa");
+            model.addColumn("Cidade");
+            model.addColumn("Estado");
+            model.addColumn("Endereço");
+
+            for (int i = 0; i < lista.size(); i++) {
+                String[] reg = {String.valueOf(lista.get(i).isRegistrado()), lista.get(i).getNome(), String.valueOf(lista.get(i).getCpf()),
+                    lista.get(i).getPlaca(), lista.get(i).getCidade(), lista.get(i).getEstado(), lista.get(i).getEndereco()};
+                model.addRow(reg);
+
+            }
+
+            Tabela.setModel(model);
+
+            Tabela.setAutoCreateRowSorter(true);
+            Tabela.getColumnModel().getColumn(0).setPreferredWidth(160);
+            Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(2).setPreferredWidth(105);
+            Tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+
+            ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+            DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+            centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+            Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+            Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado !");
+        }
+    }
+
+    public void TabelaAgente() {
+        DefaultTableModel model = new DefaultTableModel();
         Agente a = new Agente();
         List<Agente> l = new ArrayList<Agente>();
-        l= a.pegarAgentes(new JComboBox());
-        
+        l = a.pegarAgentes(new JComboBox());
+
+        ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+
         model.addColumn("Registrado");
         model.addColumn("Nome");
         model.addColumn("CPF");
         model.addColumn("Placa");
+        model.addColumn("Cidade");
+        model.addColumn("Estado");
         model.addColumn("Endereço");
-        
-        for(int i=0;i<l.size();i++){
-        String[] reg = {String.valueOf(l.get(i).isRegistrado()),l.get(i).getNome(),String.valueOf(l.get(i).getCpf()),l.get(i).getPlaca(),l.get(i).getEndereco()};
+
+        for (int i = 0; i < l.size(); i++) {
+            String[] reg = {String.valueOf(l.get(i).isRegistrado()), l.get(i).getNome(), String.valueOf(l.get(i).getCpf()), l.get(i).getPlaca(),
+                l.get(i).getCidade(), l.get(i).getEstado(), l.get(i).getEndereco()};
             model.addRow(reg);
-            
+
         }
-        
+
         Tabela.setModel(model);
+        Tabela.setAutoCreateRowSorter(true);
+        Tabela.getColumnModel().getColumn(0).setPreferredWidth(50);
+        Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(2).setPreferredWidth(150);
+        Tabela.getColumnModel().getColumn(3).setPreferredWidth(80);
+        Tabela.getColumnModel().getColumn(4).setPreferredWidth(80);
+        Tabela.getColumnModel().getColumn(5).setPreferredWidth(34);
+        Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+
+        ((DefaultTableCellRenderer) Tabela.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        Tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        Tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+
     }
-            
-            
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,58 +543,65 @@ public class TelaPesquisa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-       if(cbPesquisa.getSelectedIndex()!= 0){
-           if(cbPesquisa.getSelectedItem().equals("Missao")){
-               if(cbColuna.getSelectedItem() != null || cbColuna.getSelectedItem() != "Selecione"){
-                   Missao m = new Missao();
-                   
-               }
-           }
-           if(cbPesquisa.getSelectedItem().equals("Rota")){
-               if(cbColuna.getSelectedItem() != null || cbColuna.getSelectedItem() != "Selecione"){
-                   
-               }
-           }
-           if(cbPesquisa.getSelectedItem().equals("Agente")){
-               TabelaAgente();
-               if(cbColuna.getSelectedItem() != null || cbColuna.getSelectedItem() != "Selecione"){
-                   
-                  
-               }
-           }
-           if(cbPesquisa.getSelectedItem().equals("Cliente")){
-               if(cbColuna.getSelectedItem() != null || cbColuna.getSelectedItem() != "Selecione"){
-                   
-               }
-           }
-       }
+        if (cbPesquisa.getSelectedIndex() != 0) {
+            if (cbPesquisa.getSelectedItem().equals("Missao")) {
+                if (!cbColuna.getSelectedItem().toString().equals("Selecione") && !tfPesquisa.getText().isEmpty()) {
+                    TabelaMissaoLista(Missao.search(cbColuna.getSelectedItem().toString(), tfPesquisa.getText()));
+                } else {
+                    TabelaMissao();
+                }
+            }
+            if (cbPesquisa.getSelectedItem().equals("Rota")) {
+                if (!cbColuna.getSelectedItem().toString().equals("Selecione") && !tfPesquisa.getText().isEmpty()) {
+                    TabelaRotaLista(Rota.search(cbColuna.getSelectedItem().toString(), tfPesquisa.getText()));
+                } else {
+                    TabelaRota();
+                }
+            }
+            if (cbPesquisa.getSelectedItem().equals("Agente")) {
+                if (!cbColuna.getSelectedItem().toString().equals("Selecione") && !tfPesquisa.getText().isEmpty()) {
+                    TabelaAgenteLista(Agente.search(cbColuna.getSelectedItem().toString(), tfPesquisa.getText()));
+                } else {
+                    TabelaAgente();
+                }
+            }
+            if (cbPesquisa.getSelectedItem().equals("Cliente")) {
+                if (!cbColuna.getSelectedItem().toString().equals("Selecione") && !tfPesquisa.getText().isEmpty()) {
+                    TabelaClienteLista(Cliente.search(cbColuna.getSelectedItem().toString(), tfPesquisa.getText()));
+                } else {
+                    TabelaCliente();
+                }
+            }
+        }
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void cbPesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPesquisaItemStateChanged
         cbColuna.removeAllItems();
-        if(evt.getItem().equals("Agente")){
-             cbColuna.addItem("Selecione");
-             cbColuna.addItem("Nome");
-             cbColuna.addItem("CPF");
-             cbColuna.addItem("Placa");
-             cbColuna.addItem("Endereço");
-         }else if(evt.getItem().equals("Rota")){
-             cbColuna.addItem("Selecione");
-             cbColuna.addItem("Cliente");
-             cbColuna.addItem("Rota");
-         }else if(evt.getItem().equals("Cliente")){
-             cbColuna.addItem("Selecione");
-             cbColuna.addItem("Nome");
-             cbColuna.addItem("Estado");
-             cbColuna.addItem("Telefone");
-         }else if(evt.getItem().equals("Missao")){
-             cbColuna.addItem("Selecione");
-             cbColuna.addItem("Cliente");
-             cbColuna.addItem("Data");
-             cbColuna.addItem("Rota");
-             cbColuna.addItem("Agente");
-             cbColuna.addItem("Motorista");
-         }
+        if (evt.getItem().equals("Agente")) {
+            cbColuna.addItem("Selecione");
+            cbColuna.addItem("Nome");
+            cbColuna.addItem("CPF");
+            cbColuna.addItem("Placa");
+            cbColuna.addItem("Cidade");
+            cbColuna.addItem("Estado");
+            cbColuna.addItem("Endereço");
+        } else if (evt.getItem().equals("Rota")) {
+            cbColuna.addItem("Selecione");
+            cbColuna.addItem("Cliente");
+            cbColuna.addItem("Rota");
+        } else if (evt.getItem().equals("Cliente")) {
+            cbColuna.addItem("Selecione");
+            cbColuna.addItem("Nome");
+            cbColuna.addItem("Estado");
+            cbColuna.addItem("Telefone");
+        } else if (evt.getItem().equals("Missao")) {
+            cbColuna.addItem("Selecione");
+            cbColuna.addItem("Cliente");
+            cbColuna.addItem("Data");
+            cbColuna.addItem("Rota");
+            cbColuna.addItem("Agente");
+            cbColuna.addItem("Motorista");
+        }
     }//GEN-LAST:event_cbPesquisaItemStateChanged
 
     /**

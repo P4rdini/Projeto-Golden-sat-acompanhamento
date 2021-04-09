@@ -73,6 +73,7 @@ public class CadastroRota extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Rota");
         setBackground(new java.awt.Color(245, 245, 245));
 
         pnRota.setBackground(new java.awt.Color(243, 243, 243));

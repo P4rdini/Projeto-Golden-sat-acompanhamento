@@ -5,10 +5,13 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.Agente;
 import util.Mascara;
-
+import org.jdesktop.swingx.autocomplete.*;
 /**
  *
  * @author rafa_
@@ -19,11 +22,27 @@ public class CadastroAgente extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public CadastroAgente() {
+        
+        // FAZER JTEXTFIELD COM AUTO COMPLETE 
         initComponents();
         tfCPF.setFormatterFactory(Mascara.getCPF());
         tfPlaca.setFormatterFactory(Mascara.getPlaca());
+        String[] tab = {"alskj,aaa,bbb,cc,ddd"};
+        List list = new ArrayList();
+        list.add(tab);
+        AutoCompleteDecorator.decorate(tfCidade, list,false);
+        
     }
 
+    
+    public void Limpar(){
+        tfNome.setText("");
+        tfCPF.setText("");
+        tfEndereco.setText("");
+        tfPlaca.setText("");
+        cbRegistro.setSelected(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +67,10 @@ public class CadastroAgente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        cbEstado = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfCidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,26 +114,24 @@ public class CadastroAgente extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro Agente");
 
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+        cbEstado.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(255, 255, 0)));
+        cbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEstadoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setText("Estado:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel3.setText("Cidade:");
+
         javax.swing.GroupLayout pnAgenteLayout = new javax.swing.GroupLayout(pnAgente);
         pnAgente.setLayout(pnAgenteLayout);
         pnAgenteLayout.setHorizontalGroup(
             pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnAgenteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbRegistro)
-                    .addComponent(lbEndereco)
-                    .addComponent(lbPlaca)
-                    .addComponent(lbNome)
-                    .addComponent(lbCPF))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbRegistro)
-                    .addComponent(tfNome)
-                    .addComponent(tfEndereco)
-                    .addComponent(tfCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator2)
@@ -118,6 +139,28 @@ public class CadastroAgente extends javax.swing.JFrame {
                 .addContainerGap(164, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
+            .addGroup(pnAgenteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbRegistro)
+                    .addComponent(lbEndereco)
+                    .addComponent(lbPlaca)
+                    .addComponent(lbNome)
+                    .addComponent(lbCPF)
+                    .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cbRegistro)
+                        .addComponent(tfNome)
+                        .addComponent(tfEndereco)
+                        .addComponent(tfCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                        .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnAgenteLayout.setVerticalGroup(
             pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +173,7 @@ public class CadastroAgente extends javax.swing.JFrame {
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCPF)
                     .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,9 +183,17 @@ public class CadastroAgente extends javax.swing.JFrame {
                     .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEndereco)
                     .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(pnAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbRegistro)
                     .addComponent(cbRegistro))
@@ -174,10 +225,17 @@ public class CadastroAgente extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null,"Preenchar os todos os campos");
      
         }else{
-            Agente a = new Agente(tfNome.getText(),Double.valueOf(tfCPF.getText().toString().replace(".", "").replace("-", "")),tfPlaca.getText(),cbRegistro.isSelected(),tfEndereco.getText());
+            Agente a = new Agente(tfNome.getText(),Double.valueOf(tfCPF.getText().toString().replace(".", "").replace("-", "")),tfPlaca.getText(),cbRegistro.isSelected(),tfEndereco.getText(),cbEstado.getSelectedItem().toString(),tfCidade.getText());
             a.adicionar(a);
+            Limpar();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,9 +274,12 @@ public class CadastroAgente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JCheckBox cbRegistro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbCPF;
@@ -228,6 +289,7 @@ public class CadastroAgente extends javax.swing.JFrame {
     private javax.swing.JLabel lbRegistro;
     private javax.swing.JPanel pnAgente;
     private javax.swing.JFormattedTextField tfCPF;
+    private javax.swing.JTextField tfCidade;
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfNome;
     private javax.swing.JFormattedTextField tfPlaca;

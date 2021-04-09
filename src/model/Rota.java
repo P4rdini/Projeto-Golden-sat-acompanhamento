@@ -5,6 +5,7 @@
  */
 package model;
 
+import DAO.MissaoDAO;
 import DAO.RotaDAO;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -48,6 +49,10 @@ public class Rota {
         this.franquiaHora = franquiaHora;
         this.adHora = adHora;
         this.adKM = adKM;
+        this.idCliente=idCliente;
+    }
+
+    public Rota() {
     }
 
     public int getId() {
@@ -134,9 +139,12 @@ public class Rota {
         return resp;
     } 
 
- 
-   
-    
+    public static List<Rota> pegarTodasRotas(){
+        List<Rota> rota = new ArrayList<Rota>();
+        RotaDAO dao = new RotaDAO();
+        rota = dao.read();
+        return rota;
+    }
     public boolean adicionar(){
         RotaDAO dao = new RotaDAO();
         if(dao.create(this) != 0){
@@ -145,6 +153,51 @@ public class Rota {
             return false;
         }
     }
+    
+    public static List<Rota> search(String coluna,String pesquisa){
+        List<Rota> m = new ArrayList<Rota>();
+        List<Rota> resp = new ArrayList<Rota>();
+        RotaDAO dao = new RotaDAO();
+        m = dao.read();
+        if(coluna.equals("Cliente"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(Cliente.converterCliente(m.get(i).getIdCliente()).toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if (coluna.equals("Rota"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(m.get(i).getRota().toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }
+          return resp;  
+    }
+    
+    
+    
+    
+    public static String converterRota(int id){
+        RotaDAO dao = new RotaDAO();
+        List<Rota> l = new ArrayList<Rota>();
+        l = dao.read();
+        String str = null;
+        
+        for(int i=0;i<l.size();i++){
+            if(l.get(i).getId() == id){
+                str = l.get(i).getRota();
+            }
+        }
+        return str;
+    }
+    
     
                                                     
                                                     

@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
+import model.Agente;
 import model.Missao;
 
 
@@ -63,7 +65,27 @@ public class MissaoDAO implements persistencia<Missao> {
 
     @Override
     public List<Missao> read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         connectionFactory con = new connectionFactory();
+         List<Missao> l = new ArrayList<Missao>();
+           PreparedStatement pst = null;
+           ResultSet rs = null;
+       
+        String sql= "select * from missao";
+        try {
+            pst = con.getConexao().prepareCall(sql);
+           rs = pst.executeQuery();
+          while(rs.next()){
+            
+           Missao c = new Missao(rs.getString("data"),rs.getInt("cliente"),rs.getDouble("agente"),rs.getInt("rota"),rs.getString("nomeMot"),rs.getString("placaMot"),rs.getTime("horasolicitada"),rs.getTime("horaInicio"),rs.getTime("horaFim"),rs.getFloat("totalKM"),rs.getString("observacao"));
+           l.add(c);
+        }
+        } catch (SQLException e) {
+            System.out.println("deu errado "+e.getMessage());
+        }finally{
+            connectionFactory.closeConexao(pst, rs, con);
+        }
+        return l;
+
     }
 
     @Override
@@ -75,6 +97,6 @@ public class MissaoDAO implements persistencia<Missao> {
     public boolean delete(Missao obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
  
 }

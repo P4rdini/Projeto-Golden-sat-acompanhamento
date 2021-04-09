@@ -26,7 +26,7 @@ public class AgenteDAO implements persistencia<Agente> {
            PreparedStatement pst = null;
            ResultSet rs = null;
        
-        String sql= "insert into agente (nome,cpf,placa,registrado,endereco) value (?,?,?,?,?)";
+        String sql= "insert into agente (nome,cpf,placa,registrado,endereco,estado,cidade) value (?,?,?,?,?,?,?)";
         try {
         pst = con.getConexao().prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
               
@@ -36,6 +36,8 @@ public class AgenteDAO implements persistencia<Agente> {
             pst.setString(3, obj.getPlaca());
             pst.setBoolean(4,obj.isRegistrado());
             pst.setString(5, obj.getEndereco());
+            pst.setString(6, obj.getEstado());
+            pst.setString(7, obj.getCidade());
             
             pst.execute();                                                                                                    
             rs = pst.getGeneratedKeys();
@@ -67,7 +69,7 @@ public class AgenteDAO implements persistencia<Agente> {
            rs = pst.executeQuery();
           while(rs.next()){
             
-           Agente c = new Agente(rs.getString("nome"),rs.getLong("cpf"),rs.getString("placa"), rs.getBoolean("registrado"), rs.getString("endereco"));
+           Agente c = new Agente(rs.getString("nome"),rs.getLong("cpf"),rs.getString("placa"), rs.getBoolean("registrado"), rs.getString("endereco"),rs.getString("estado"),rs.getString("cidade"));
            l.add(c);
         }
         } catch (SQLException e) {

@@ -5,8 +5,13 @@
  */
 package model;
 
+import DAO.AgenteDAO;
 import DAO.MissaoDAO;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -165,6 +170,68 @@ public class Missao {
         }
     }
     
+    public static List<Missao> getMissao(JComboBox c){
+         MissaoDAO dao = new MissaoDAO();
+        List<Missao> l = new ArrayList<Missao>();
+        l = dao.read();
+        System.out.println("Rodou a leitura do metodo GetMissao ");
+        return l;
+    }
+    
+    public static List<Missao> search(String coluna,String pesquisa){
+        List<Missao> m = new ArrayList<Missao>();
+        List<Missao> resp = new ArrayList<Missao>();
+        MissaoDAO dao = new MissaoDAO();
+        m = dao.read();
+        System.out.println("Rodou a leitura do metodo search");
+        if(coluna.equals("Cliente"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(Cliente.converterCliente(m.get(i).getCliente()).toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if(coluna.equals("Data"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(m.get(i).getData().toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if (coluna.equals("Rota"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(Rota.converterRota(m.get(i).getRota()).toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if (coluna.equals("Agente"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(Agente.converterAgente(m.get(i).getAgente()).toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }if (coluna.equals("Motorista"))
+        {
+            for(int i=0;i<m.size();i++)
+            {
+                if(m.get(i).getNomeMot().toLowerCase().contains(pesquisa.toLowerCase()))
+                {
+                    resp.add(m.get(i));
+                }
+            }
+        }
+          return resp;  
+    }
     
     
 }

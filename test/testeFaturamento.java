@@ -1,27 +1,20 @@
-import DAO.AgenteDAO;
-import DAO.MissaoDAO;
-import DAO.RotaDAO;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import model.Agente;
 import model.Faturamento;
-import model.Missao;
-import model.Rota;
 
 public class testeFaturamento {
 
     public static void main(String[] args) {
+    
+      
         Calendar inicio = Calendar.getInstance();
         Calendar fim = Calendar.getInstance();
-        inicio.set(21,02, 15);
-        fim.set(21,02, 19);
+        inicio.set(21,03, 15);
+        fim.set(21,03, 19);
         
    
         
-        Faturamento f = new Faturamento(inicio, fim);
+        Faturamento f = new Faturamento();
+        f.Faturamento(inicio, fim);
         
         
      /*   MissaoDAO mDAO = new MissaoDAO();

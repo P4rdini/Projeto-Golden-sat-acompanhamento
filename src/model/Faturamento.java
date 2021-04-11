@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,7 +26,9 @@ public class Faturamento {
     private float kmPercorrido;
     private double total;
 
-    public Faturamento(Calendar inicio , Calendar fim) {
+    
+    
+    public List<Faturamento> Faturamento(Calendar inicio , Calendar fim) {
         MissaoDAO mDAO = new MissaoDAO();
         RotaDAO rDAO = new RotaDAO();
         AgenteDAO aDAO = new AgenteDAO();
@@ -37,7 +40,7 @@ public class Faturamento {
         Faturamento f;
         rota = rDAO.read();
         agente = aDAO.read();
-        
+        fim.add(Calendar.DAY_OF_MONTH, 1);
         m = mDAO.read();
         for(int i=0;i<m.size();i++){
             Calendar data = Calendar.getInstance();
@@ -74,13 +77,20 @@ public class Faturamento {
                                 LocalTime resp;
                                 int minutos = (totalHoras.getMinute() + faturamento.get(i).getMinutoTrabalhada());
                                 if (minutos > 59) {
+                                    System.out.println("Rodou condicao");
                                     minutos -= 60;
                                     faturamento.get(i).setHoraTrabalhada(faturamento.get(i).getHoraTrabalhada() + totalHoras.getHour() + 1);
                                     faturamento.get(i).setMinutoTrabalhada(minutos);
                                 } else {
+                                    System.out.println("Nao Rodou condicao");
                                     faturamento.get(i).setHoraTrabalhada(faturamento.get(i).getHoraTrabalhada() + totalHoras.getHour());
                                     faturamento.get(i).setMinutoTrabalhada(minutos);
                                 }
+                            }else{
+                                LocalTime resp;
+                                int minutos = (totalHoras.getMinute() + faturamento.get(i).getMinutoTrabalhada());
+                                faturamento.get(i).setHoraTrabalhada(faturamento.get(i).getHoraTrabalhada() + totalHoras.getHour());
+                                faturamento.get(i).setMinutoTrabalhada(minutos);
                             }
 
                         }
@@ -88,10 +98,16 @@ public class Faturamento {
                 }
             }
         }
-
+        List<Faturamento> resp = new ArrayList<Faturamento>();
+        
         for (int i = 0; i < faturamento.size(); i++) {
             System.out.println(faturamento.get(i).toString());
+            if(!(faturamento.get(i).getTotal() == 0.0)){
+                resp.add(faturamento.get(i));
+            }
         }
+        
+        return resp;
     }
 
     public Faturamento() {
@@ -137,7 +153,7 @@ public class Faturamento {
     public void setTotal(double total) {
         this.total = total;
     }
-
+    
     @Override
     public String toString() {
         return "Faturamento{" + "agente=" + agente + ", horaTrabalhada=" + horaTrabalhada +":"+minutoTrabalhada+  ", kmPercorrido=" + kmPercorrido + ", total=" + total + '}';
